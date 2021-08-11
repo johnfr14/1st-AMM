@@ -1,5 +1,6 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
+import "../LiquidityPool.sol";
 
 interface ILiquidityPoolFactory {
     event PairCreated(address indexed token0, address indexed token1, address pair, uint);
@@ -11,7 +12,7 @@ interface ILiquidityPoolFactory {
     function allPairs(uint) external view returns (address pair);
     function allPairsLength() external view returns (uint);
 
-    function createPair(address tokenA, address tokenB, uint amount0, uint amount1) external returns (address pair);
+    function createPair(address tokenA, address tokenB, uint amount0, uint amount1) external returns (LiquidityPool pool);
 
     function setFeeTo(address) external;
     function setFeeToSetter(address) external;

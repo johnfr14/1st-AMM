@@ -16,8 +16,8 @@ async function main() {
   console.log('Deploying contracts with the account:', deployer.address);
 
   // We get the contract to deploy
-  const Pool = await hre.ethers.getContractFactory('LiquidityPool');
-  const pool = await Pool.deploy("addre Token0", "address Token1");
+  const Pool = await hre.ethers.getContractFactory('LiquidityPoolFactory');
+  const pool = await Pool.deploy('0x899d01D0477A12Bb9B0a453c61cfb4220f84EBC5');
 
   // Attendre que le contrat soit réellement déployé, cad que la transaction de déploiement
   // soit incluse dans un bloc
