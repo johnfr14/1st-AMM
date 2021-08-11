@@ -12,7 +12,7 @@ interface ILiquidityPoolFactory {
     function allPairs(uint) external view returns (address pair);
     function allPairsLength() external view returns (uint);
 
-    function createPair(address tokenA, address tokenB, uint amount0, uint amount1) external returns (LiquidityPool pool);
+    function createPair(address tokenA, address tokenB) external returns (LiquidityPool);
 
     function setFeeTo(address) external;
     function setFeeToSetter(address) external;

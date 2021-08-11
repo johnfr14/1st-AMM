@@ -20,7 +20,7 @@ contract LiquidityPoolFactory is ILiquidityPoolFactory {
         return allPairs.length;
     }
 
-    function createPair(address tokenA, address tokenB) external returns (LiquidityPool) {
+    function createPair(address tokenA, address tokenB) external override returns (LiquidityPool) {
         require(tokenA != tokenB, "UniswapV2: IDENTICAL_ADDRESSE");
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         require(token0 != address(0), "UniswapV2: ZERO_ADDRESS");
