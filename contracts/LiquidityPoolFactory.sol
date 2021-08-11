@@ -20,18 +20,18 @@ contract LiquidityPoolFactory is ILiquidityPoolFactory {
         return allPairs.length;
     }
 
-    function createPair(address tokenA, address tokenB, uint amount0, uint amount1) external override returns (LiquidityPool pool) {
+    function createPair(address tokenA, address tokenB) external returns (LiquidityPool) {
         require(tokenA != tokenB, "UniswapV2: IDENTICAL_ADDRESSE");
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         require(token0 != address(0), "UniswapV2: ZERO_ADDRESS");
         require(getPair[token0][token1] == address(0), "UniswapV2: PAIR_EXISTS"); // single check is sufficient
 
-        pool = new LiquidityPool(tokenA, tokenB);
-        pool.add(amount0, amount1);
+        LiquidityPool pool = new LiquidityPool(tokenA, tokenB);
         getPair[token0][token1] = address(pool);
         getPair[token1][token0] = address(pool); // populate mapping in the reverse direction
         allPairs.push(address(pool));
         emit PairCreated(token0, token1, address(pool), allPairs.length);
+        return pool;
     }
 
     function setFeeTo(address _feeTo) override external {
